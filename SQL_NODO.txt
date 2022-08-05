@@ -1,0 +1,456 @@
+select * from emp;
+
+select ename,SAL*12 ANUAL, COMM from EMP;
+select empno from emp;
+select EMPNO || ' '||ENAME EMPLOYEE from emp;
+
+SELECT empno || ename || ' WORK IN DEPARTMENT '
+|| deptno ||' Employee Detail'
+FROM emp;
+
+SELECT  DEPTNO FROM dept;
+
+SELECT ename, sal*12 +EMP.COMM ANUAL_SAL
+FROM emp;
+
+SELECT ename, sal*12 + NVL(comm,0) ANUAL_SAL FROM emp;
+
+select * from emp where COMM is null
+
+--Bài tập
+--Bài 2
+--1
+select * from SALGRADE;
+
+--2
+select * from EMP;
+
+--3
+select JOB from SCOTT.EMP;
+
+
+
+--4
+select ENAME , SAL*12  + NVL(comm,0) REMUNERATION from EMP;
+
+--5
+select ENAME ||' HAS HELP THE POSITION OF ' || EMP.JOB ||' IN DEPT '
+           || DEPTNO || ' SINCE '|| HIREDATE from EMP;
+
+--6
+
+
+
+
+DESCRIBE  SCOTT.EMP;
+DESC SCOTT.EMP;
+
+
+
+--7
+select * from EMP;
+
+select
+    TO_CHAR(SAL,'L99G999D99MI') as SAL,
+    TO_CHAR(HIREDATE,'YYYY/MM/DD HH:MI:SS') as Hiredate from EMP;
+
+
+COLUMN JOB_TITLE FORMAT A20
+
+COLUMN sal JUSTIFY LEFT FORMAT $ 99,990.00
+COLUMN HIBERNATE FORMAT A9 NULL 'Not hired'
+
+
+
+--Bài 3
+--1
+select ENAME,DEPTNO, SAL from EMP
+where SAl BETWEEN  100 and 2000;
+
+--2
+select DEPTNO,ENAME  from EMP
+order by DEPTNO;
+
+--3
+select * from EMP where DEPTNO in(10,20)
+                         ORDER BY ENAME;
+
+--4
+select ENAME,JOB from EMP where JOB like 'CLERK'
+
+--5
+select ENAME from EMP where ENAME like'%TH%' or
+                            ENAME like '%LL%';
+
+--6
+select ENAME, JOB , SAL from EMP where JOB not like '%PRESIDENT%';
+
+--7
+select ENAME, DEPTNO, HIREDATE from EMP where EXTRACT(Year from HIREDATE) like '%83%';
+
+--8
+select SAL*12 as ANUAL_SAL,NVL(comm,0) as Comm from EMP where SAL >COMM
+                                                          or JOB like '%SALEMAN%';
+
+--Bài 4.1
+--1  Liệt kê tên nhân viên, mã phòng ban và lương nhân viên được tăng 15% (PCTSAL)
+select DEPTNO, ENAME, (SAL+(SAL*0.15)) as PCTSAL from EMP;
+
+/*
+ 2. Viết câu lệnh hiển thị như sau:
+EMPLOYEE_AND_JOB
+KING*** *PRESIDENT
+BLAKE*** **MANAGER
+CLARK*** **MANAGER
+JONES*** **MANAGER
+MARTIN******SALESMAN
+ALLEN*** *SALESMAN
+TURNER******SALESMAN
+JAMES*** *CLERK
+WARD*** **SALESMAN
+FORD*** ***ANALYST
+SMITH*** *CLERK
+SCOTT*** **ANALYST
+ADAMS*** *CLERK
+MILLER*** ***CLERK
+ */
+select rpad(ENAME,9,'*')|| lpad(JOB,9,'*') as EMPLOYEE_AND_JOB from EMP
+
+/*
+ 3. Viết câu lệnh hiển thị như sau:
+EMPLOYEE
+KING (President)
+BLAKE (Manager)
+CLARK (Manager)
+JONES (Manager)
+MARTIN (Salesman)
+ALLEN (Salesman)
+TURNER (Salesman)
+JAMES (Clerk)
+WARD (Salesman)
+FORD (Analyst)
+SMITH (Clerk)
+SCOTT (Analyst)
+ADAMS (Clerk)
+MILLER (Clerk)
+ */
+select ENAME ||' ('||(JOB)||')' as EMPLOYEE from EMP
+
+/*
+ 4. Viết câu lệnh hiển thị như sau:
+ENAME DEPTNO JOB
+BLAKE 30 Manager
+MARTIN 30 Salesperson
+ALLEN 30 Salesperson
+TURNER 30 Salesperson
+JAMES 30 Clerk
+WARD 30 Salesperson
+ */
+select ENAME, DEPTNO, JOB from EMP where DEPTNO ='30'
+
+--5 Tìm ngày thứ 6 đầu tiên cách 2 tháng so với ngày hiện tại hiển thị ngày dưới dạng 09 February 1990.
+select TO_CHAR(next_day(ADD_MONTHS(HIREDATE,-2),6),'dd-fmMonth-yyyy') as BT  from EMP;
+
+/*6 . Tìm thông itn về tên nhân viên, ngày gia nhập công ty của nhân viên phòng số 20,
+sao cho hiển thị như sau:
+ENAME DATE_HIRED
+JONES april,SECOND 1981
+FORD december,THIRD 1981
+SMITH december,SEVENTEENTH 1980
+SCOTT december,NINTH 1982
+ADAMS january,TWELFTH 1983*/
+
+select ENAME , TO_CHAR(HIREDATE,'fmMONTH-DDth-YYYY') from EMP;
+
+/*7
+   Hiển thị tên nhân viên, ngày gia nhập công ty, ngày xét nâng lương (sau ngày gia
+nhập công ty 1 năm), sắp xếp theo thứ tự ngày xét nâng lương.
+ENAME HIREDATE REVIEW
+SMITH 17-12-1980 17-12-1981
+ALLEN 20-02-1981 20-02-1982
+WARD 22-02-1981 22-02-1982
+JONES 02-04-1981 02-04-1982
+BLAKE 01-05-1981 01-05-1982
+CLARK 09-06-1981 09-06-1982
+TURNER 08-09-1981 08-09-1982
+MARTIN 28-09-1981 28-09-1982
+KING 17-11-1981 17-11-1982
+JAMES 03-12-1981 03-12-1982
+FORD 03-12-1981 03-12-1982
+MILLER 23-01-1982 23-01-1983
+SCOTT 09-12-1982 09-12-1983
+ADAMS 12-01-1983 12-01-1984
+ */
+select ENAME, HIREDATE,add_months(HIREDATE,12) as Review from EMP
+order by Review
+
+/*8
+  Hiển thị tên nhân viên và lương dưới dạng
+ENAME SALARY
+ADAMS BELOW 1500
+ALLEN 1600
+BLAKE 2850
+CLARK 2450
+FORD 3000
+JAMES BELOW 1500select ENAME,
+       CASE
+    WHEN SAL >0 and SAL <1500 THEN 'BELOW 1500'
+    WHEN SAL >1500 THEN SAL||''
+    END as SALARY
+from EMP;
+JONES 2975
+KING 5000
+MARTIN BELOW 1500
+MILLER BELOW 1500
+SCOTT 3000
+SMITH BELOW 1500
+TURNER On Target
+WARD BELOW 1500
+ */
+
+
+--9  Cho biết thứ của ngày hiện tại
+select TO_CHAR(SYSDATE,'DAY') from DUAL
+
+
+
+/*10 Đưa chuỗi dưới dạng nn/nn, kiểm tra nếu khúng khuôn dạng trả lời là YES, ngược lại
+là NO. Kiểm tra với các chuỗi 12/34, 01/1a, 99\88 */
+
+
+select DECODE('12/34','12/34','YES','01/1a','NO','99\88','NO') as checka
+from DUAL
+
+/*11
+  Hiển thị tên nhân viên, ngày gia nhập công ty, ngày lĩnh lương sao cho ngày lĩnh
+lương phải vào thứ 6, nhân viên chỉ được nhận lương sau ít nhất 15 ngày làm việc tại
+công ty, sắp xếp theo thứ tự ngày gia nhập công ty.
+ */
+ select * from EMP;
+select ENAME, HIREDATE, TO_CHAR(next_day(HIREDATE+15,6),'DAY-mm-yyyy') as Linhluong
+from EMP where (current_date - HIREDATE)>15
+order by HIREDATE
+
+
+--Bài 4.2
+--1. Tìm lương thấp nhất, lớn nhất và lương trung bình của tất cả các nhân viên
+
+select min(SAL) as MinSAL,max(SAL) as MaxSAL, avg(SAL) as AVGSAL from EMP
+
+--2. Tìm lương nhỏ nhất và lớn của mỗi loại nghề nghiệp
+select JOB, min(SAL) as min, max(SAL) as max
+from EMP group by JOB
+
+--3. Tìm xem có bao nhiêu giám đốc trong danh sách nhân viên.
+select count(JOB) from EMP where  JOB ='PRESIDENT'
+
+--4. Tìm tất cả các phòng ban mà số nhân viên trong phòng >3
+select distinct DEPTNO from EMP
+group by DEPTNO
+having count(ENAME) >3
+
+--5. Tìm ra mức lương nhỏ nhất của mỗi nhân viên làm việc cho một giám đốc nào đó sắp xếp theo thứ tự tăng dần của mức lương.
+select DEPTNO,min(SAL) as min from EMP where DEPTNO =ANY (select DEPTNO from EMP where  JOB  like '%MANAGER%')
+and JOB not like '%MANAGER%'
+group by DEPTNO order by  min(SAL);
+
+
+--Bài 5
+/*
+ 1. Hiển thị toàn bộ tên nhân viên và tên phòng ban làm việc sắp xếp theo tên phòng
+ban.
+ */
+select ENAME, DEPTNO from EMP order by DEPTNO
+
+/*
+ 2. Hiển thị tên nhân viên, vị trí địa lý, tên phòng với điều kiện lương >1500.
+ENAME LOC DNAME
+KING NEW YORK ACCOUNTING
+BLAKE CHICAGO SALES
+CLARK NEW YORK ACCOUNTING
+JONES DALLAS RESEARCH
+ALLEN CHICAGO SALES
+FORD DALLAS RESEARCH
+SCOTT DALLAS RESEARCH
+ */
+ select ENAME ,LOC, DNAME from EMP
+join DEPT D on EMP.DEPTNO = D.DEPTNO
+where SAL >1500
+
+/*
+ 3. Hiển thị tên nhân viên, nghề nghiệp, lương và mức lương.
+ENAME JOB SAL GRADE
+JAMES CLERK 950 1
+SMITH CLERK 800 1
+ADAMS CLERK 1100 1
+MARTIN SALESMAN 1250 2
+WARD SALESMAN 1250 2
+MILLER CLERK 1300 2
+ALLEN SALESMAN 1600 3
+TURNER SALESMAN 1500 3
+BLAKE MANAGER 2850 4
+CLARK MANAGER 2450 4
+JONES MANAGER 2975 4
+FORD ANALYST 3000 4
+SCOTT ANALYST 3000 4
+KING PRESIDENT 5000 5
+ */
+ select * from SALGRADE;
+SELECT E.ENAME,E.JOB,E.SAL, S.GRADE
+FROM EMP E, SALGRADE S
+WHERE E.SAL BETWEEN S. LOSAL AND S.HISAL;
+
+
+/*
+ 4. Hiển thị tên nhân viên, nghề nghiệp, lương và mức lương, với điều kiện mức
+lương=3.
+ENAME JOB SAL GRADE
+ALLEN SALESMAN 1600 3
+TURNER SALESMAN 1500 3
+ */
+ select * from SALGRADE;
+
+SELECT E.ENAME,E.JOB,E.SAL, S.GRADE
+FROM EMP E, SALGRADE S
+WHERE E.SAL BETWEEN S. LOSAL AND S.HISAL and s.GRADE =3;
+
+/*
+ 5. Hiển thị những nhân viên tại DALLAS
+ENAME LOC SAL
+JONES DALLAS 2975
+FORD DALLAS 3000
+SMITH DALLAS 800
+SCOTT DALLAS 3000
+ADAMS DALLAS 1100
+ */
+  select ENAME,LOC,SAL from EMP E join DEPT D on E.DEPTNO = D.DEPTNO
+where LOC like'%DALLAS%'
+
+/*
+ 6. Hiển thị tên nhân viên , nghề nghiệp, lương, mức lương, tên phòng làm việc trừ nhân
+viên có nghề là cleck và sắp xếp theo chiều giảm.
+ENAME JOB SAL GRADE DNAME
+MARTIN SALESMAN 1250 2 SALES
+WARD SALESMAN 1250 2 SALES
+ALLEN SALESMAN 1600 3 SALES
+TURNER SALESMAN 1500 3 SALES
+BLAKE MANAGER 2850 4 SALES
+CLARK MANAGER 2450 4 ACCOUNTING
+JONES MANAGER 2975 4 RESEARCH
+FORD ANALYST 3000 4 RESEARCH
+SCOTT ANALYST 3000 4 RESEARCH
+KING PRESIDENT 5000 5 ACCOUNTING
+ */
+
+ select distinct EMP.ENAME,EMP.JOB, EMP.SAL,G.GRADE,D.DNAME from EMP join  DEPT D on EMP.DEPTNO = D.DEPTNO, SALGRADE G
+where EMP.JOB !='CLERK'
+and EMP.SAL BETWEEN G.LOSAL AND G.HISAL
+order by JOB desc
+
+/*
+ 7. Hiển thị chi tiết về những nhân viên kiếm được 36000 $ 1 năm hoặc nghề là cleck.
+(gồm các trường tên, nghề, thu nhập, mã phòng, tên phòng, mức lương)
+ENAME JOB ANUAL_SAL DNAME GRADE
+JAMES CLERK 11400 SALES 1
+SMITH CLERK 9600 RESEARCH 1
+ADAMS CLERK 13200 RESEARCH 1
+MILLER CLERK 15600 ACCOUNTING 2
+FORD ANALYST 36000 RESEARCH 4
+SCOTT ANALYST 36000 RESEARCH 4
+ */
+ select  EMP.ENAME,EMP.JOB,EMP.SAL*12 as ANUAL_SAL, D.DNAME,S.GRADE from EMP join DEPT D on EMP.DEPTNO = D.DEPTNO, SALGRADE S
+where SAL = 3000 or EMP.JOB ='CLERK'
+  and EMP.SAL BETWEEN S.LOSAL AND S.HISAL
+
+
+/*
+ 8. Hiển thị những phòng không có nhân viên nào làm việc.
+DEPTNO DNAME LOC
+40 OPERATIONS BOSTON
+ */
+
+ select * from EMP,DEPT ;
+select  E.DEPTNO, D.DNAME,D.LOC from EMP E join DEPT D on E.DEPTNO = D.DEPTNO
+where JOB is NULL
+
+
+
+/*
+ 9. Hiển thị mã nhân viên, tên nhân viên, mã người quản lý, tên người quản lý
+EMP_NAME EMP_SAL MGR_NAME MGR_SAL
+BLAKE 2850 KING 5000
+CLARK 2450 KING 5000
+JONES 2975 KING 5000
+MARTIN 1250 BLAKE 2850
+ALLEN 1600 BLAKE 2850
+TURNER 1500 BLAKE 2850
+JAMES 950 BLAKE 2850
+WARD 1250 BLAKE 2850
+FORD 3000 JONES 2975
+SMITH 800 FORD 3000
+SCOTT 3000 JONES 2975
+ADAMS 1100 SCOTT 3000
+MILLER 1300 CLARK 2450
+ */
+select * from EMP;
+select E.ENAME as EMP_NAME, E.SAL as EMP_SAL,
+       P.ENAME as MGR_NAME, P.SAL as MGR_SAL
+from EMP E, EMP P
+where E.MGR =P.EMPNO;
+/*
+ 10. Như câu 9 hiển thị thêm thông tin về ông KING.
+EMP_NAME EMP_SAL MGR_NAME MGR_SAL
+KING 5000
+BLAKE 2850 KING 5000
+CLARK 2450 KING 5000
+JONES 2975 KING 5000
+MARTIN 1250 BLAKE 2850
+ALLEN 1600 BLAKE 2850
+TURNER 1500 BLAKE 2850
+JAMES 950 BLAKE 2850
+WARD 1250 BLAKE 2850
+FORD 3000 JONES 2975
+SMITH 800 FORD 3000
+SCOTT 3000 JONES 2975
+ADAMS 1100 SCOTT 3000
+MILLER 1300 CLARK 2450
+ */
+ select * from EMP;
+select E.ENAME as EMP_NAME, E.SAL as EMP_SAL,
+       P.ENAME as MGR_NAME, P.SAL as MGR_SAL
+from EMP E LEFT OUTER JOIN EMP P
+on E.MGR =P.EMPNO;
+/*
+ 11. Hiển thị nghề nghiệp được tuyển dụng vào năm 1981 và không được tuyển dụng vào
+năm 1994.
+ */
+
+select DISTINCT JOB from EMP
+where EXTRACT(YEAR from HIREDATE)=1981
+minus
+select DISTINCT JOB from EMP
+where EXTRACT(YEAR from HIREDATE)=1994
+
+/*
+ 12. Tìm những nhân viên gia nhập công ty trước giám đốc của họ.
+ */
+ select * from EMP;
+select E.ENAME as EMP_NAME, TO_CHAR(E.HIREDATE,'DD-MM-YYYY') as EMP_HIREDATE,
+       P.ENAME as MGR_NAME,TO_CHAR(P.HIREDATE,'DD-MM-YYYY')  as MGR_HIREDATE , P.JOB from EMP E, EMP P
+where E.MGR = P.EMPNO and E.HIREDATE <P.HIREDATE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
