@@ -1,0 +1,85 @@
+--Chương 7
+/*
+ 1. Tạo bảng PROJECT với các column được chỉ ra dưới đây, PROJID là promary key, và
+P_END_DATE > P_START_DATE.
+Column name Data Type Size.
+PROJID NUMBER 4
+P_DESC VARCHAR2 20
+P_START_DATE DATE
+P_END_DATE DATE
+BUDGET_AMOUNT NUMBER 7,2
+MAX_NO_STAFF NUMBER 2
+ */
+create table PROJECT
+(
+    PROJID  NUMBER(4) not null
+        CONSTRAINT PK_PROJECT_ID PRIMARY KEY,
+        P_DESC varchar2(20) ,
+        P_START_DATE DATE,
+        P_END_DATE DATE,
+        BUDGET_AMOUNT NUMBER(7,2),
+        MAX_NO_STAFF NUMBER(7,2),
+        CONSTRAINT CHK_DATE CHECK ( P_END_DATE >P_START_DATE )
+)
+
+select * from PROJECT;
+
+/*
+ 2. Tạo bảng ASSIGNMENTS với các column được chỉ ra dưới đây, đồng thời cột
+PROJID là foreign key tới bảng PROJECT, cột EMPNO là foreign key tới bảng EMP.
+Column name Data Type Size.
+PROJID NUMBER 4 NOT NULL
+EMPNO NUMBER 4 NOT NULL
+A_START_DATE DATE
+A_END_DATE DATE
+BILL_AMOUNT NUMBER 4,2
+ASSIGN_TYPE VARCHAR2 2
+ */
+
+ create table ASSIGMENTS
+ (
+PROJID NUMBER(4) ,
+EMPNO NUMBER(4) ,
+A_START_DATE DATE,
+A_END_DATE DATE,
+BILL_AMOUNT NUMBER(4,2),
+ASSIGN_TYPE VARCHAR2(2),
+CONSTRAINT FK_PROJECTID FOREIGN KEY (PROJID)
+REFERENCES PROJECT(PROJID),
+CONSTRAINT  FK_EMPNOEMP FOREIGN KEY (EMPNO)
+REFERENCES EMP(EMPNO)
+);
+select * from ASSIGMENTS
+
+/*
+ 3. Thêm column COMMENTS kiểu LONG vào bảng PROJECTS. Thêm column HOURS kiểu
+NUMBER vào bảng ASSIGNMENTS
+ */
+ alter table PROJECT
+add COMMENTS long;
+
+alter table ASSIGMENTS
+add HOURS number;
+select * from ASSIGMENTS
+
+/*
+ 4. Sử dụng view USER_OBJECTS hiển thị tất cả các đối tượng user sở hữu.
+ */
+ DESCRIBE USER_OBJECTS
+
+/*
+ 5. Thêm ràng buộc duy nhất (UNIQUE) cho 2 column PROJECT_ID và EMPNO của bảng
+ASSIGNMENTS.
+ */
+ alter table ASSIGMENTS modify PROJID UNIQUE;
+alter table ASSIGMENTS modify  EMPNO UNIQUE
+
+/*
+ 6. Xem các thông tin về các ràng buộc trong USER_CONSTRAINTS.
+ */
+ select * from USER_CONSTRAINTS
+
+/*
+ 7. Xem trong USER hiện tại có tất cả bao nhiêu bảng.
+ */
+ select count(TABLE_NAME) from SCOTT.USER_OBJECTS;
