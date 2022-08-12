@@ -1,4 +1,3 @@
-
 --Bài tập
 CREATE table NV_HUY_NXB (
     ID number(4) PRIMARY KEY ,
@@ -8,8 +7,7 @@ CREATE table NV_HUY_NXB (
     ADDRESS varchar2(60),
     Mota varchar2(60)
 );
-drop table NV_HUY_TACGIA;
-select * from NV_HUY_NXB;
+
 CREATE TABLE NV_HUY_TACGIA(
     ID number(4) PRIMARY KEY ,
     MA_TACGIA number(4) unique ,
@@ -36,8 +34,7 @@ CREATE TABLE NV_HUY_SACH(
     SL_DM number(4),
     Tong_SACH number(5)
 );
-drop table NV_HUY_TACGIA;
-select * from NV_HUY_SACH;
+
 
 CREATE TABLE NV_HUY_READER(
     ID number(4) PRIMARY KEY ,
@@ -66,8 +63,7 @@ CREATE TABLE NV_HUY_MUONSACH(
 
 
 
-select * from NV_HUY_MUONSACH;
-drop table NV_HUY_NXB;
+
 
 --B YÊU CẦU
 --1
@@ -92,13 +88,8 @@ CREATE SEQUENCE NV_HUY_MUONSACH_SEQ
     START WITH 1
     INCREMENT BY 1;
 
-select * from NV_HUY_TACGIA;
-select * from NV_HUY_NXB;
-select * from NV_HUY_SACH;
-select * from NV_HUY_READER;
-select * from NV_HUY_MUONSACH;
 
-select NV_HUY_TACGIA_SEQ.currval from DUAL;
+
 INSERT INTO NV_HUY_NXB values (NV_HUY_NXB_SEQ.currval,'1','NHA XUAT BAN HA NOI','0','HANOI','');
 INSERT INTO NV_HUY_NXB values (NV_HUY_NXB_SEQ.nextval,'2','NHA XUAT BAN HOA BINH','0','HOABINH','');
 INSERT INTO NV_HUY_NXB values (NV_HUY_NXB_SEQ.nextval,'3','NHA XUAT BAN NAM DINH','0','NAMDINH','');
@@ -106,7 +97,6 @@ INSERT INTO NV_HUY_NXB values (NV_HUY_NXB_SEQ.nextval,'4','NHA XUAT BAN DAK LAK'
 INSERT INTO NV_HUY_NXB values (NV_HUY_NXB_SEQ.nextval,'5','NHA XUAT BAN THAI BINH','0','THAIBINH','');
 
 
-select * from NV_HUY_SACH;
 
 
 INSERT INTO NV_HUY_SACH values (NV_HUY_SACH_SEQ.currval,'1','DORAEMON','8','5','Truyện tranh','11-12-1992','KO','150','53','203');
@@ -142,8 +132,7 @@ INSERT INTO NV_HUY_MUONSACH values (NV_HUY_MUONSACH_SEQ.nextval,'4','22','6','11
 INSERT INTO NV_HUY_MUONSACH values (NV_HUY_MUONSACH_SEQ.nextval,'5','21','21','11-08-2022','18-08-2022','Đang mượn','');
 INSERT INTO NV_HUY_MUONSACH values (NV_HUY_MUONSACH_SEQ.nextval,'2','21','21','01-08-2022','18-08-2022','Đang mượn','');
 INSERT INTO NV_HUY_MUONSACH values (NV_HUY_MUONSACH_SEQ.nextval,'5','21','21','01-08-2021','18-08-2022','Đang mượn','');
-select * from NV_HUY_READER;
-select * from NV_HUY_MUONSACH;
+
 
 --5
 select T.MA_TACGIA,T.TNAME, S.Chude, S.Tong_SACH from NV_HUY_TACGIA T, NV_HUY_SACH S
@@ -156,7 +145,7 @@ where S.ID_NXB = N.ID and S.ID_TACGIA= T.ID and ROWNUM <10
 order by S.Tong_SACH DESC
 
 --7
-select * from NV_HUY_SACH;
+
 select  R.MA_READER,R.RNAME,S.MA_SACH,S.SNAME,
        M.NGAY_MUON,M.SL
        from NV_HUY_MUONSACH M join  NV_HUY_READER R on M.ID_R = R.ID join NV_HUY_SACH S on M.ID_S =S.ID
@@ -164,16 +153,14 @@ where M.NGAY_MUON = (select add_months(trunc(SYSDATE,'month'),-0) from DUAL) and
 order by  M.NGAY_MUON DESC , R.RNAME
 
 --8
-select * from NV_HUY_SACH;
-select * from NV_HUY_MUONSACH;
+
 select to_char(SYSDATE,'MM-YYYY') from DUAL;
 select  S.MA_SACH,S.SNAME,S.SL_DM, M.ID from  NV_HUY_SACH S,NV_HUY_MUONSACH M
 where M.ID_S = S.ID and M.NGAY_MUON > '01-01-2022' and TO_CHAR(M.NGAY_MUON,'DD-MM-YYYY') <(select to_char(SYSDATE,'DD-MM-YYYY') from DUAL)
 and ROWNUM<10
 
 --9
-select * from NV_HUY_MUONSACH;
-select * from NV_HUY_READER;
+
 select R.MA_READER,R.RNAME ,count(M.ID_R) as SL_Muon  from NV_HUY_READER R, NV_HUY_MUONSACH M
 where R.ID = M.ID_R
 group by  R.RNAME,R.MA_READER
@@ -187,8 +174,7 @@ select (TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(R_BIRTH,'YYYY')) as Tuổi , count(ID) a
 group by (TO_CHAR(SYSDATE,'YYYY')-TO_CHAR(R_BIRTH,'YYYY'))
 
 --12
-select * from NV_HUY_NXB;
-select * from NV_HUY_SACH;
+
 select  S.NAM_XB,N.MA_NXB,N.NNAME as TEN_NXB, S.Tong_SACH as SL_SACH
         from NV_HUY_NXB N , NV_HUY_SACH S
 where S.ID_NXB =N.ID order by S.NAM_XB DESC, N.NNAME
