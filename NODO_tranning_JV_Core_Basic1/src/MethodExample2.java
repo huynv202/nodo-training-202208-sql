@@ -1,0 +1,2 @@
+public class MethodExample2 {
+}
