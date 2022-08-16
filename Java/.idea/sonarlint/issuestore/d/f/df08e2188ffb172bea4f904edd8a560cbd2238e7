@@ -1,0 +1,17 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ùƒ‹‚ýÿÿÿÿ
+h
+java:S42761"RRefactor this code to use the more specialised Functional Interface 'IntPredicate'(«ÖŒ¿
+W	java:S125"<This block of commented-out lines of code should be removed.(ÔÑ¶#8Ÿ™˜¦ª0
+s
+java:S42763"QRefactor this code to use the more specialised Functional Interface 'IntConsumer'(‹ö®Øùÿÿÿÿ8®î—¦ª0
+Z
+java:S16123"?Replace this lambda with method reference 'listOfInteger::add'.(‹ö®Øùÿÿÿÿ
+U	java:S1066"9Replace this use of System.out or System.err by a logger.(ûˆïŸ8¯î—¦ª0
+N
+java:S1602@",Remove useless curly braces around statement(äÿûÆûÿÿÿÿ8ÒÁœ¦ª0
+U	java:S106A"9Replace this use of System.out or System.err by a logger.(ù˜Ò’8ÙÁœ¦ª0
+Y
+java:S1128"7Remove this unused import 'java.util.stream.Collector'.(ß‹ÎÓøÿÿÿÿ8³´¤¦ª0
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8³´¤¦ª0

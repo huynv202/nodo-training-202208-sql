@@ -1,0 +1,21 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(œÂöÈ
+K
+java:S1854!"5Remove this useless assignment to local variable "c".(¢½ó
+V	java:S125"<This block of commented-out lines of code should be removed.(»•ûÿÿÿÿ
+B
+java:S1602!",Remove useless curly braces around statement(¢½ó
+V
+java:S1612!"@Replace this lambda with method reference 'System.out::println'.(¢½ó
+N	java:S106""9Replace this use of System.out or System.err by a logger.(„íí
+Q	java:S125%"<This block of commented-out lines of code should be removed.(èÃí“
+G
+java:S1602/",Remove useless curly braces around statement(ÎºÈüÿÿÿÿ
+M	java:S1060"9Replace this use of System.out or System.err by a logger.(¸Ÿù#
+X	java:S1252"<This block of commented-out lines of code should be removed.(èÃí“8¹ºŒ¬ª0
+n
+java:S16024"SRemove useless curly braces around statement and then remove useless return keyword(œ³èÍÿÿÿÿÿ
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ˆõ¬ª0
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ˆõ¬ª0

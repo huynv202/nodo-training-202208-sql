@@ -1,0 +1,9 @@
+
+>
+java:S1604"(Make this anonymous inner class a lambda(€¼˜µ
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©¯Î”úÿÿÿÿ8©Ò½£ª0
+N	java:S106"9Replace this use of System.out or System.err by a logger.(­Ø½Ç
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ƒ®ß­ýÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(­Ø½Ç
+J
+java:S1128"4Remove this unused import 'java.util.stream.Stream'.(ó÷Ž”

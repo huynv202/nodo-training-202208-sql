@@ -1,23 +1,0 @@
-
-0
-java:S1220""Move this file to a named package.
-N	java:S106"9Replace this use of System.out or System.err by a logger.(ˆÇ“
-S	java:S106"9Replace this use of System.out or System.err by a logger.(¤ª´®ùÿÿÿÿ
-S	java:S106	"9Replace this use of System.out or System.err by a logger.(ÃÄé‡üÿÿÿÿ
-S	java:S106
-"9Replace this use of System.out or System.err by a logger.(’¸†µøÿÿÿÿ
-@
-java:S2185
-"%Remove this silly call to "Math.ceil"(’¸†µøÿÿÿÿ
-S	java:S106"9Replace this use of System.out or System.err by a logger.(Í•àŠıÿÿÿÿ
-S	java:S106"9Replace this use of System.out or System.err by a logger.(¨ÿ·©ÿÿÿÿÿ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(œãÈâ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(ú†µ¡
-M	java:S106"9Replace this use of System.out or System.err by a logger.(êş©]
-N	java:S106"9Replace this use of System.out or System.err by a logger.(íŸîŒ
-M	java:S106"9Replace this use of System.out or System.err by a logger.(úâË,
-9
-java:S2185"$Remove this silly call to "Math.exp"(úâË,
-N	java:S106"9Replace this use of System.out or System.err by a logger.(ŞºÇâ
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(Š˜Û¼ÿÿÿÿÿ8Éƒñ„ª0
-U	java:S106"9Replace this use of System.out or System.err by a logger.(‘£›†8îùñ„ª0

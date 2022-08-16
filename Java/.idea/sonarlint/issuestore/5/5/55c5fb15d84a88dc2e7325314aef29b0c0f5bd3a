@@ -1,0 +1,8 @@
+
+n
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ì¼ğ5
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ùƒ‹‚ıÿÿÿÿ
+k
+java:S1149"VReplace the synchronized class "Hashtable" by an unsynchronized one such as "HashMap".(ì¼ğ5
+N	java:S106"9Replace this use of System.out or System.err by a logger.(¥ï¡
+U	java:S106"9Replace this use of System.out or System.err by a logger.(¥ï¡8‚­Á¤ª0

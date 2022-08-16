@@ -1,0 +1,7 @@
+
+Y
+java:S6208 "CMerge the previous cases into this one using comma-separated label.(Ç¦œ
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(©¯Î”úÿÿÿÿ8ñÀ¹£ª0
+S	java:S106"9Replace this use of System.out or System.err by a logger.(Úø¾Ëùÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ˆß‚Ğ
+7	java:S131""Add a default case to this switch.(ÜŸ•

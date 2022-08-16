@@ -1,0 +1,10 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(œÂöÈ
+Q	java:S125"<This block of commented-out lines of code should be removed.(«¤Èÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(¡·½Äúÿÿÿÿ
+B
+java:S1602",Remove useless curly braces around statement(†´¤Ä
+M
+java:S1128"7Remove this unused import 'java.awt.event.ActionEvent'.(Úù“‘
+P
+java:S1128":Remove this unused import 'java.awt.event.ActionListener'.(Ìä¹
