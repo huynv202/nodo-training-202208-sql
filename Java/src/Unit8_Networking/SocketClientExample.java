@@ -1,0 +1,21 @@
+package Unit8_Networking;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+
+public class SocketClientExample {
+    public static void main(String[] args) throws IOException {
+        Socket socket = new Socket("localhost",4445);
+        System.out.println("CLIENT start sending....");
+        try(DataInputStream input = (DataInputStream) socket.getInputStream();
+            DataOutputStream outputStream = (DataOutputStream) socket.getOutputStream()){
+            outputStream.writeUTF("Hello server");
+            System.out.println("Server say: "+input.readUTF());
+        }finally {
+            socket.close();
+        }
+
+    }
+}
