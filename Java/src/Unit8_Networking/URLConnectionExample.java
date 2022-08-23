@@ -13,14 +13,22 @@ import java.sql.Connection;
 
 public class URLConnectionExample {
     public static void main(String[] args) throws IOException {
+       try {
+
+
         URL url = new URL("https://youtube.com");
         URLConnection connection = url.openConnection();
         InputStream stream = connection.getInputStream();
         int read;
-        byte []bytes = new byte[0];
+        byte []bytes = new byte[100];
         while ((read= stream.read(bytes))!=-1){
             System.out.println(new String(bytes,0,read));
-        }
+        }}
+       catch (MalformedURLException e) {
+           e.printStackTrace();
+       }catch (IOException e) {
+           e.printStackTrace();
+       }
 
     }
 }

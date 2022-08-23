@@ -1,5 +1,6 @@
 package Unit12_JDBC;
 
+import javax.sql.rowset.CachedRowSet;
 import java.io.File;
 import java.sql.*;
 
@@ -14,6 +15,7 @@ public class InsertDataExamlple {
             DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
             connection = DriverManager.getConnection("jdbc:oracle:thin:SCOTT/SCOTT@27.118.22.14:1521:orcl");
             statement = connection.createStatement();
+
 
 
         // insert
@@ -37,17 +39,23 @@ public class InsertDataExamlple {
 
 //Transaction
 //            connection.setAutoCommit(false);
-//            for (int i =0;i<10;i++){
-//                String name = "Tran Van" + i;
-//                int age =10+i;
-//                statement.executeUpdate("insert into STUDENT_HUY(id, name, age) values " +
-//                        "'('+STUDENT_HUY_SEQ.nextval+','+name+','+age+')'");
+//            try {
 //
+//
+//            for (int i =0;i<10;i++) {
+//                String name1 = "Tran Van" + i;
+//                int age1 = 10 + i;
+//                String sql = "insert into STUDENT_HUY(id, name,age) values " +
+//                        "(" + "STUDENT_HUY_SEQ.nextval" + ",'" + name1 + "'," + age1 + ")";
+//                statement.executeUpdate(sql);
 //            }
-//            connection.rollback();
+//            }catch (Exception e){
+//                connection.rollback();
+//                e.printStackTrace();
+//            }
+//
 //            connection.setAutoCommit(true);
-//            ResultSet rs = statement.executeQuery("select * from STUDENT_HUY");
-//           rs = statement.executeQuery("select count(*)from STUDENT_HUY");
+//            ResultSet rs = statement.executeQuery("select count(*)from STUDENT_HUY");
 //           if(rs.next()){
 //               System.out.println("total records ="+rs.getInt(1));
 //               connection.close();
@@ -55,11 +63,11 @@ public class InsertDataExamlple {
 //
 //           //batch
 //            for(int i =0;i<20;i++){
-//                int id = 7+i;
-//                String name ="KKa" +i;
-//                int age =20+i;
-//                String sql ="insert into STUDENT_HUY values" +
-//                        "'('+"+id+"+','+"+name+"+','+"+age+"+')'";
+//
+//                String name1 ="KKa" +i;
+//                int age1 =20+i;
+//                String sql = "insert into STUDENT_HUY(id, name,age) values " +
+//                        "(" + "STUDENT_HUY_SEQ.nextval" + ",'" + name1 + "'," + age1 + ")";
 //                statement.addBatch(sql);
 //            }
 //            statement.executeBatch();
@@ -69,12 +77,27 @@ public class InsertDataExamlple {
 //                System.out.println("total records ="+rs.getInt(1));
 //                connection.close();
 //            }
+//            String sql = "delete  from STUDENT_HUY where ID>20";
+//            statement.execute(sql);
+//            ResultSet rs;
+//            rs = statement.executeQuery("select  count(*) from STUDENT_HUY");
+//            if(rs.next()){
+//                System.out.println("total records ="+rs.getInt(1));
+//                connection.close();
+//            }
+        }
 
-        } catch (ClassNotFoundException e) {
+        //delete
+
+
+
+        catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        }
+        finally {
             statement.close();
             connection.close();
         }

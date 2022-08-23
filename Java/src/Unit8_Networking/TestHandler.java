@@ -10,8 +10,6 @@ import java.text.MessageFormat;
 public class TestHandler implements HttpHandler {
 
 
-
-
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         String messageFormat = "<html><h2>This is  the response</h2></html>";

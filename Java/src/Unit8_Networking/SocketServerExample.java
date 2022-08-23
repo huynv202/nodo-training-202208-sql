@@ -8,27 +8,28 @@ import java.net.Socket;
 
 public class SocketServerExample{
 
-
-    public SocketServerExample(int serverPort) throws IOException {
+    public SocketServerExample( int serverPort) throws IOException {
         ServerSocket serverSocket = new ServerSocket(serverPort);
-        System.out.println("SERVER Listening....");
-        while (true){
+        System.out.println("Server is running on port "+serverPort);
+        while(true){
             Socket socket = serverSocket.accept();
-            new Thread(()->{
-               try (DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-                    DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream())){
-                   System.out.println("Client say: "+dataInputStream.readUTF());
-                   dataOutputStream.writeUTF("I'm a socket server!");
-
-               } catch (IOException e) {
-                   throw new RuntimeException(e);
-               }
-            }).start();
+            System.out.println("Client connected: "+socket.getInetAddress()+":"+socket.getPort());
+            try(DataInputStream input = new DataInputStream(socket.getInputStream());
+                DataOutputStream output = new DataOutputStream(socket.getOutputStream())){
+                output.writeUTF("Hello client");
+                System.out.println("Server say: "+input.readUTF());
+            }finally {
+                socket.close();
+            }
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        new SocketServerExample(6666);
+    public static void main(String[] args) {
+        try {
+            new SocketServerExample(6379);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

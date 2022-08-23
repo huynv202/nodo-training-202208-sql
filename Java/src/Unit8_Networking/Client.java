@@ -12,7 +12,7 @@ public class Client implements Hello{
         return null;
     }
     public static void main(String[] args) throws RemoteException, NotBoundException {
-        Registry registry = LocateRegistry.getRegistry("localhost",8000);
+        Registry registry = LocateRegistry.getRegistry("localhost",8080);
         Hello stub = (Hello) registry.lookup("Hello");
         System.out.println("response:"+stub.say(args[0]));
     }

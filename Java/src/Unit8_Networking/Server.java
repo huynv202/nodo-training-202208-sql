@@ -21,7 +21,7 @@ public class Server implements Hello {
         Object obj = new Server();
         Hello stub = (Hello) UnicastRemoteObject.exportObject((Remote) obj,0);
 
-        Registry registry = LocateRegistry.getRegistry("127.0.0.1", 8000);
+        Registry registry = LocateRegistry.getRegistry("127.0.0.1", 8080);
         registry.bind("Hello",stub);
         System.out.println("Server ready");
     }

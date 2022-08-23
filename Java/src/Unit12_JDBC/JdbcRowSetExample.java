@@ -7,10 +7,7 @@ import javax.sql.RowSetListener;
 import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetProvider;
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class JdbcRowSetExample {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
@@ -35,15 +32,13 @@ public class JdbcRowSetExample {
             System.out.println("Age: " + rowSet.getString(3));
         }
         rowSet.first();
-        rowSet.updateString(5,"Hoang Van X");
+        rowSet.updateString(5, "Hoang Van X");
         rowSet.commit();
 
         rowSet.first();
-        System.out.println(rowSet.getInt(1)+"\t"+rowSet.getInt(2));
+        System.out.println(rowSet.getInt(1) + "\t" + rowSet.getInt(2));
         rowSet.absolute(5);
-        System.out.println(rowSet.getInt(2)+" "+rowSet.getInt(3));
+        System.out.println(rowSet.getInt(2) + " " + rowSet.getInt(3));
         rowSet.close();
-
-
     }
 }

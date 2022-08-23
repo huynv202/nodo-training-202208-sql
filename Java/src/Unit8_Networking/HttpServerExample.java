@@ -15,5 +15,6 @@ public class HttpServerExample {
         server.createContext("/test",testHandler);
         server.setExecutor(Executors.newFixedThreadPool(5));
         server.start();
+        System.out.println("Server is running");
     }
 }
